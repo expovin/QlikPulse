@@ -57,7 +57,13 @@ router.route('/sendMessage/interactive')
 
 router.route('/happiness')
 .get(function(req, res, next) {
-    db.getUsers( true)
+
+    if(req.headers.test)
+        log.info("Set TEST mode. Sendo only to user with Test flag set to true")
+    else
+        log.info("Set PRODUCTION mode. Sendo to all users user")
+
+    db.getUsers(req.headers.test)
 
     .then( users =>{
         return cv.askForHappiness(users);
