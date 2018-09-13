@@ -22,7 +22,7 @@ var bufMessages = {
         },
         askForMood : {
             pre : "Qlik Pulse",
-            in : "One word characterizing your week",
+            in : "Describe your week in one word",
             fall : "Sorry, seems there is some error"
         },
 
