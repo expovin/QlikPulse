@@ -1,5 +1,5 @@
 var express = require('express');
-var secret = require('../secret');
+var secret = require('../certs/secret');
 var conv = require("../conversations");
 var SkillBot = require('../lib/skillBot');
 var log = require('../lib/logHandler');

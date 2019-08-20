@@ -17,4 +17,4 @@ COPY . .
 
 EXPOSE 6000 6443
 
-CMD [ "node", "server.js" ]
+CMD [ "npm", "start" ]

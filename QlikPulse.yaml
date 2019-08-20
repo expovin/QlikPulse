@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: qlikpulse
+ labels:
+  app: qlikpulse
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: qlikpulse
+ template:
+  metadata:
+   labels:
+    app: qlikpulse
+  spec:
+   containers:
+    - image: expovin/qlikpulse:stable
+      name: qlikpulse
+      volumeMounts:
+      - name: certs
+        mountPath: "/usr/src/app/certs"
+        readOnly: true    
+      - name: config
+        mountPath: "/usr/src/app/config"
+        readOnly: true                
+      ports: 
+       - containerPort: 6000       
+      env:
+       - name :  PORT
+         value: "6000"
+       - name : TZ
+         value: "Europe/Rome"
+   volumes:
+    - name: certs
+      secret:
+       secretName: qlikpulse
+    - name: config
+      configMap:
+       name: qlikpulse.config
+       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: qlikpulse
+spec:
+  selector:
+    app: qlikpulse
+  ports:
+    - protocol: TCP
+      name : http
+      port: 6000
+      targetPort: 6000
+
+
