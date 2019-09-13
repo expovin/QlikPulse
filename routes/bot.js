@@ -67,6 +67,7 @@ router.route('/happiness')
     db.getUsers(req.headers.test)
 
     .then( users =>{
+        log.debug("Send message to "+users.length+" users");
         return cv.askForHappiness(users);
     } )
     .then ( result =>{

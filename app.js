@@ -47,7 +47,15 @@ app.use(function (req, res, next) {
   next();
 });
 
+
+/** Helth Check */
+app.get("/", (req, res, next) => {
+  res.status(201).json("api-pulse.qlik.com");
+})
+
 app.use('/bot', bot);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
